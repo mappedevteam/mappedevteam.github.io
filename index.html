@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,8 +42,15 @@
             filter: blur(80px);
         }
 
-        .blob-1 { top: -200px; right: -200px; }
-        .blob-2 { bottom: -200px; left: -200px; }
+        .blob-1 {
+            top: -200px;
+            right: -200px;
+        }
+
+        .blob-2 {
+            bottom: -200px;
+            left: -200px;
+        }
 
         header {
             padding: 24px 5%;
@@ -195,11 +203,17 @@
         }
 
         @media (max-width: 768px) {
-            header nav { display: none; }
-            .hero h1 { font-size: 48px; }
+            header nav {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 48px;
+            }
         }
     </style>
 </head>
+
 <body>
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
@@ -216,7 +230,8 @@
     <main>
         <section class="hero">
             <h1>Elevando la movilidad en Tacna.</h1>
-            <p>Somos el equipo detrás de MapPe, transformando la forma en que te mueves por la ciudad con tecnología de punta y datos abiertos.</p>
+            <p>Somos el equipo detrás de MapPe, transformando la forma en que te mueves por la ciudad con tecnología de
+                punta y datos abiertos.</p>
             <a href="https://play.google.com/store" class="btn">Descargar MapPe</a>
         </section>
 
@@ -241,7 +256,7 @@
 
     <script>
         // Configura aquí la URL de tu PocketBase
-        const PB_URL = 'https://malt-chunk-oboe.ngrok-free.dev'; 
+        const PB_URL = 'https://api-mappe-devteam.duckdns.org/api';
 
         async function fetchNoticias() {
             try {
@@ -301,4 +316,5 @@
         fetchBlog();
     </script>
 </body>
+
 </html>
