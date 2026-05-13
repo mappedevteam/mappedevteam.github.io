@@ -1,11 +1,21 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Política de Privacidad — Mappe</title>
+    <title>MapPe Dev Team — Innovación en Movilidad</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg: #0F172A;
+            --card: #1E293B;
+            --accent: #818CF8;
+            --accent-glow: rgba(129, 140, 248, 0.3);
+            --text-main: #F1F5F9;
+            --text-dim: #94A3B8;
+            --border: #334155;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -13,209 +23,282 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: #0F172A;
-            color: #CBD5E1;
-            line-height: 1.7;
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 60px 24px;
+        /* Blobs Decorativos */
+        .blob {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: -1;
+            filter: blur(80px);
+        }
+
+        .blob-1 { top: -200px; right: -200px; }
+        .blob-2 { bottom: -200px; left: -200px; }
+
+        header {
+            padding: 24px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border);
         }
 
         .logo {
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 800;
-            color: #818CF8;
-            margin-bottom: 8px;
-            letter-spacing: -0.5px;
+            color: var(--accent);
+            letter-spacing: -1px;
         }
 
-        .badge {
-            display: inline-block;
-            background: #1E293B;
-            border: 1px solid #334155;
-            color: #94A3B8;
-            font-size: 13px;
-            padding: 4px 12px;
-            border-radius: 99px;
-            margin-bottom: 48px;
-        }
-
-        h1 {
-            font-size: 36px;
-            font-weight: 800;
-            color: #F1F5F9;
-            margin-bottom: 12px;
-            letter-spacing: -0.5px;
-        }
-
-        .updated {
-            color: #64748B;
-            font-size: 14px;
-            margin-bottom: 48px;
-        }
-
-        h2 {
-            font-size: 20px;
-            font-weight: 700;
-            color: #E2E8F0;
-            margin: 40px 0 12px;
-            padding-left: 16px;
-            border-left: 3px solid #818CF8;
-        }
-
-        p {
-            margin-bottom: 16px;
-            color: #94A3B8;
-        }
-
-        ul {
-            margin: 0 0 16px 24px;
-            color: #94A3B8;
-        }
-
-        ul li {
-            margin-bottom: 8px;
-        }
-
-        a {
-            color: #818CF8;
+        nav a {
+            color: var(--text-dim);
             text-decoration: none;
+            margin-left: 32px;
+            font-weight: 600;
+            transition: color 0.3s;
         }
 
-        a:hover {
-            text-decoration: underline;
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        .hero {
+            padding: 120px 5%;
+            text-align: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: clamp(48px, 8vw, 84px);
+            font-weight: 800;
+            letter-spacing: -3px;
+            line-height: 0.9;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: var(--text-dim);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+
+        .btn {
+            background: var(--accent);
+            color: var(--bg);
+            padding: 16px 32px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 800;
+            display: inline-block;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px var(--accent-glow);
+        }
+
+        section {
+            padding: 80px 5%;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 48px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
         }
 
         .card {
-            background: #1E293B;
-            border: 1px solid #334155;
-            border-radius: 16px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
             padding: 24px;
-            margin: 24px 0;
+            transition: transform 0.3s, border-color 0.3s;
+            cursor: pointer;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent);
+        }
+
+        .card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            background: #000;
+        }
+
+        .card-tag {
+            color: var(--accent);
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: var(--text-dim);
+            font-size: 14px;
+            flex: 1;
         }
 
         .footer {
+            padding: 80px 5%;
+            border-top: 1px solid var(--border);
             text-align: center;
-            margin-top: 64px;
-            padding-top: 32px;
-            border-top: 1px solid #1E293B;
-            color: #475569;
-            font-size: 14px;
+            color: var(--text-dim);
+        }
+
+        @media (max-width: 768px) {
+            header nav { display: none; }
+            .hero h1 { font-size: 48px; }
         }
     </style>
 </head>
-
 <body>
-    <div class="container">
-        <div class="logo">Mappe</div>
-        <div class="badge">Directorio Turístico · Tacna, Perú</div>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
 
-        <h1>Política de Privacidad</h1>
-        <p class="updated">Última actualización: Mayo 2026</p>
+    <header>
+        <div class="logo">MapPe Dev</div>
+        <nav>
+            <a href="#noticias">Noticias</a>
+            <a href="#blog">Blog</a>
+            <a href="/index.html">Privacidad</a>
+        </nav>
+    </header>
 
-        <p>
-            Bienvenido a <strong style="color:#E2E8F0">Mappe</strong>. Esta Política de Privacidad describe cómo
-            recopilamos, usamos y protegemos su información personal cuando utiliza nuestra aplicación móvil de
-            directorio turístico para la ciudad de Tacna, Perú. Hemos actualizado nuestros términos para reflejar las
-            nuevas funcionalidades de personalización y analíticas.
-        </p>
+    <main>
+        <section class="hero">
+            <h1>Elevando la movilidad en Tacna.</h1>
+            <p>Somos el equipo detrás de MapPe, transformando la forma en que te mueves por la ciudad con tecnología de punta y datos abiertos.</p>
+            <a href="https://play.google.com/store" class="btn">Descargar MapPe</a>
+        </section>
 
-        <h2>1. Información que Recopilamos</h2>
-        <div class="card">
-            <ul>
-                <li><strong style="color:#E2E8F0">Datos de Ubicación:</strong> Con su permiso explícito, accedemos a su
-                    ubicación geográfica para mostrarle los negocios cercanos. Esta información se procesa en su
-                    dispositivo. Las rutas calculadas pueden ser cacheadas de forma anónima para mejorar el rendimiento
-                    global.</li>
-                <li><strong style="color:#E2E8F0">Datos de Perfil y Autenticación:</strong> Al iniciar sesión con
-                    Google, recopilamos su nombre, correo electrónico y URL de su foto de perfil. Esto es necesario para
-                    personalizar su experiencia y gestionar sus beneficios.</li>
-                <li><strong style="color:#E2E8F0">Paradas Personalizadas:</strong> Si decide guardar ubicaciones
-                    personalizadas ("Favoritos" o "Mis Paradas"), estas coordenadas y nombres se almacenan de forma
-                    segura vinculadas a su cuenta de usuario en nuestros servidores.</li>
-                <li><strong style="color:#E2E8F0">Solicitudes de Negocio:</strong> Si envía una solicitud para registrar
-                    una empresa, recopilamos los datos del negocio (RUC, nombre, rubro) y un correo de contacto para
-                    procesar su postulación.</li>
-                <li><strong style="color:#E2E8F0">Datos de Uso y Analíticas:</strong> Recopilamos eventos anónimos de
-                    interacción, como clics en negocios, tiempo de permanencia y generación de rutas. Usamos un ID de
-                    sesión aleatorio para agrupar estos eventos sin identificarlo personalmente.</li>
-            </ul>
-        </div>
+        <section id="noticias">
+            <h2 class="section-title">Últimas Noticias</h2>
+            <div id="news-grid" class="grid">
+                <p>Cargando noticias...</p>
+            </div>
+        </section>
 
-        <h2>2. Cómo Usamos su Información</h2>
-        <p>Utilizamos la información recopilada para los siguientes fines:</p>
-        <ul>
-            <li>Gestionar su cuenta de usuario y sincronizar sus paradas personalizadas en diferentes dispositivos.</li>
-            <li>Procesar solicitudes de registro de nuevos negocios en la plataforma.</li>
-            <li>Gestionar el sistema de recompensas y tokens obtenidos por interacción o visualización de anuncios.</li>
-            <li>Proporcionar estadísticas de rendimiento anónimas a los dueños de negocios (analíticas de visitas).</li>
-            <li>Mejorar el motor de rutas y la relevancia de los resultados de búsqueda en Tacna.</li>
-        </ul>
+        <section id="blog">
+            <h2 class="section-title">De nuestro Blog</h2>
+            <div id="blog-grid" class="grid">
+                <p>Cargando blog...</p>
+            </div>
+        </section>
+    </main>
 
-        <h2>3. Permisos de la Aplicación</h2>
-        <div class="card">
-            <ul>
-                <li><strong style="color:#E2E8F0">ACCESS_FINE_LOCATION:</strong> Para posicionamiento preciso en el mapa
-                    y navegación.</li>
-                <li><strong style="color:#E2E8F0">INTERNET / NETWORK_STATE:</strong> Para cargar mapas, sincronizar su
-                    perfil y verificar la disponibilidad del servidor.</li>
-            </ul>
-        </div>
+    <footer class="footer">
+        <p>&copy; 2026 MapPe Dev Team. Desarrollado con ❤️ en Tacna, Perú.</p>
+    </footer>
 
-        <h2>4. Compartición de Datos</h2>
-        <p>
-            <strong style="color:#E2E8F0">No vendemos sus datos personales</strong>. La compartición se limita a:
-        </p>
-        <ul>
-            <li><strong style="color:#E2E8F0">Dueños de Negocios:</strong> Reciben resúmenes agregados y anónimos (ej.
-                "10 personas buscaron cómo llegar ayer"). Nunca reciben su correo, nombre o ubicación exacta.</li>
-            <li><strong style="color:#E2E8F0">Proveedores Técnicos:</strong> Servicios de infraestructura (PocketBase) y
-                mapas (OpenStreetMap) necesarios para el funcionamiento de la app.</li>
-        </ul>
+    <script>
+        // Configura aquí la URL de tu PocketBase
+        const PB_URL = 'https://malt-chunk-oboe.ngrok-free.dev'; 
 
-        <h2>5. Seguridad</h2>
-        <p>
-            Implementamos validación estricta de tokens OAuth y cifrado en la transmisión de datos. El acceso a las
-            herramientas de administración y analíticas detalladas está restringido mediante roles de seguridad.
-        </p>
+        async function fetchNoticias() {
+            try {
+                const response = await fetch(`${PB_URL}/api/collections/noticias/records?sort=-created&limit=3`);
+                const data = await response.json();
+                const grid = document.getElementById('news-grid');
+                grid.innerHTML = '';
 
-        <h2>6. Derechos del Usuario</h2>
-        <p>Usted puede:</p>
-        <ul>
-            <li>Eliminar sus paradas personalizadas en cualquier momento desde la app.</li>
-            <li>Solicitar la eliminación completa de su cuenta y datos asociados contactándonos por correo.</li>
-            <li>Cerrar sesión para dejar de sincronizar datos de perfil.</li>
-        </ul>
+                if (data.items.length === 0) {
+                    grid.innerHTML = '<p>Próximamente nuevas noticias.</p>';
+                    return;
+                }
 
-        <h2>7. Retención de Datos</h2>
-        <p>
-            - <strong style="color:#E2E8F0">Datos de Cuenta y Favoritos:</strong> Se conservan mientras su cuenta esté
-            activa.<br>
-            - <strong style="color:#E2E8F0">Datos de Analíticas:</strong> Los eventos individuales se eliminan
-            automáticamente de nuestros servidores después de **90 días**.
-        </p>
+                data.items.forEach(item => {
+                    grid.innerHTML += `
+                        <article class="card">
+                            <span class="card-tag">Noticia</span>
+                            <h3>${item.titulo}</h3>
+                            <p>${item.contenido.replace(/<[^>]*>?/gm, '').substring(0, 150)}...</p>
+                            <div style="margin-top:20px; font-size:12px; color:var(--accent)">${new Date(item.created).toLocaleDateString()}</div>
+                        </article>
+                    `;
+                });
+            } catch (error) {
+                document.getElementById('news-grid').innerHTML = '<p>Error al cargar noticias.</p>';
+            }
+        }
 
-        <h2>8. Cambios a esta Política</h2>
-        <p>
-            Actualizamos esta política para reflejar nuevas funcionalidades como el sistema de paradas personalizadas y
-            analíticas de negocios. Se recomienda revisar esta página periódicamente.
-        </p>
+        async function fetchBlog() {
+            try {
+                const response = await fetch(`${PB_URL}/api/collections/blog/records?sort=-created&limit=3`);
+                const data = await response.json();
+                const grid = document.getElementById('blog-grid');
+                grid.innerHTML = '';
 
-        <h2>9. Contacto</h2>
-        <p>Si tiene preguntas sobre su privacidad, contáctenos en:</p>
-        <div class="card">
-            📧 <a href="mailto:mappe.app.tacna@gmail.com">mappe.app.tacna@gmail.com</a><br><br>
-            🌐 Mappe — Tecnología para el Turismo en Tacna
-        </div>
+                if (data.items.length === 0) {
+                    grid.innerHTML = '<p>El blog estará disponible muy pronto.</p>';
+                    return;
+                }
 
-        <div class="footer">
-            &copy; 2026 Mappe. Todos los derechos reservados.
-        </div>
-    </div>
+                data.items.forEach(item => {
+                    grid.innerHTML += `
+                        <article class="card">
+                            <span class="card-tag">Blog</span>
+                            <h3>${item.titulo}</h3>
+                            <p>${item.extracto || item.contenido.replace(/<[^>]*>?/gm, '').substring(0, 150) + '...'}</p>
+                            <div style="margin-top:20px; font-size:12px; color:var(--accent)">Por ${item.autor || 'Equipo MapPe'}</div>
+                        </article>
+                    `;
+                });
+            } catch (error) {
+                document.getElementById('blog-grid').innerHTML = '<p>Error al cargar el blog.</p>';
+            }
+        }
+
+        fetchNoticias();
+        fetchBlog();
+    </script>
 </body>
-
 </html>
