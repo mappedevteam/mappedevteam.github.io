@@ -4,317 +4,350 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MapPe Dev Team — Innovación en Movilidad</title>
+    <title>Mappe — Directorio Turístico de Tacna</title>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --bg: #0F172A;
-            --card: #1E293B;
-            --accent: #818CF8;
-            --accent-glow: rgba(129, 140, 248, 0.3);
-            --text-main: #F1F5F9;
-            --text-dim: #94A3B8;
-            --border: #334155;
+            --bg-color: #030014;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --accent-1: #3b82f6;
+            --accent-2: #8b5cf6;
+            --accent-3: #ec4899;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
         }
 
         body {
-            font-family: 'Outfit', sans-serif;
-            background-color: var(--bg);
+            background-color: var(--bg-color);
             color: var(--text-main);
-            line-height: 1.6;
             overflow-x: hidden;
+            line-height: 1.6;
         }
 
-        /* Blobs Decorativos */
-        .blob {
+        /* Animated Mesh Gradient Background */
+        .mesh-bg {
             position: fixed;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
-            border-radius: 50%;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
             z-index: -1;
-            filter: blur(80px);
+            overflow: hidden;
+            background: var(--bg-color);
+        }
+
+        .mesh-blob {
+            position: absolute;
+            filter: blur(90px);
+            opacity: 0.5;
+            animation: float 20s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .blob-1 {
-            top: -200px;
-            right: -200px;
+            top: -10%;
+            left: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: var(--accent-1);
+            animation-delay: 0s;
         }
 
         .blob-2 {
-            bottom: -200px;
-            left: -200px;
+            bottom: -20%;
+            right: -10%;
+            width: 60vw;
+            height: 60vw;
+            background: var(--accent-2);
+            animation-delay: -5s;
         }
 
-        header {
-            padding: 24px 5%;
+        .blob-3 {
+            top: 40%;
+            left: 30%;
+            width: 40vw;
+            height: 40vw;
+            background: var(--accent-3);
+            animation-delay: -10s;
+            opacity: 0.3;
+        }
+
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(5%, 10%) scale(1.1); }
+            100% { transform: translate(-5%, -5%) scale(0.9); }
+        }
+
+        /* Navigation */
+        nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            backdrop-filter: blur(10px);
+            padding: 24px 5%;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--glass-border);
             position: sticky;
             top: 0;
             z-index: 100;
-            border-bottom: 1px solid var(--border);
         }
 
         .logo {
-            font-size: 24px;
+            font-size: 28px;
             font-weight: 800;
-            color: var(--accent);
+            background: linear-gradient(to right, #fff, var(--text-muted));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             letter-spacing: -1px;
         }
 
-        nav a {
-            color: var(--text-dim);
+        .nav-links a {
+            color: var(--text-main);
             text-decoration: none;
             margin-left: 32px;
             font-weight: 600;
-            transition: color 0.3s;
+            font-size: 15px;
+            opacity: 0.8;
+            transition: all 0.3s ease;
         }
 
-        nav a:hover {
-            color: var(--accent);
+        .nav-links a:hover {
+            opacity: 1;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
         }
 
+        /* Hero Section */
         .hero {
-            padding: 120px 5%;
+            min-height: calc(100vh - 85px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-            max-width: 1000px;
-            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        .badge {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--accent-1);
+            margin-bottom: 24px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            animation: slideDown 0.8s ease-out;
         }
 
         .hero h1 {
-            font-size: clamp(48px, 8vw, 84px);
+            font-size: clamp(40px, 8vw, 80px);
             font-weight: 800;
-            letter-spacing: -3px;
-            line-height: 0.9;
+            line-height: 1.1;
+            letter-spacing: -2px;
             margin-bottom: 24px;
-            background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+            max-width: 900px;
+            background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: slideUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: clamp(16px, 2vw, 22px);
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 48px;
+            animation: slideUp 1s ease-out 0.2s backwards;
+        }
+
+        .actions {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+            animation: slideUp 1s ease-out 0.4s backwards;
+        }
+
+        .btn {
+            padding: 16px 32px;
+            border-radius: 100px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            color: #fff;
+            box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(139, 92, 246, 0.5);
+        }
+
+        .btn-secondary {
+            background: var(--glass-bg);
+            color: var(--text-main);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-3px);
+        }
+
+        /* Features */
+        .features {
+            padding: 100px 5%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 40px;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .feature-icon {
+            font-size: 32px;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-3));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .hero p {
-            font-size: 20px;
-            color: var(--text-dim);
-            max-width: 600px;
-            margin: 0 auto 40px;
-        }
-
-        .btn {
-            background: var(--accent);
-            color: var(--bg);
-            padding: 16px 32px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 800;
-            display: inline-block;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .btn:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 30px var(--accent-glow);
-        }
-
-        section {
-            padding: 80px 5%;
-        }
-
-        .section-title {
-            font-size: 32px;
-            font-weight: 800;
-            margin-bottom: 48px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .section-title::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: var(--border);
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 24px;
-        }
-
-        .card {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 24px;
-            transition: transform 0.3s, border-color 0.3s;
-            cursor: pointer;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .card:hover {
-            transform: translateY(-8px);
-            border-color: var(--accent);
-        }
-
-        .card img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 12px;
+        .feature-card h3 {
+            font-size: 24px;
             margin-bottom: 16px;
-            background: #000;
+            font-weight: 600;
         }
 
-        .card-tag {
-            color: var(--accent);
-            font-size: 12px;
-            font-weight: 800;
-            text-transform: uppercase;
-            margin-bottom: 8px;
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 16px;
         }
 
-        .card h3 {
-            font-size: 20px;
-            margin-bottom: 12px;
-        }
-
-        .card p {
-            color: var(--text-dim);
-            font-size: 14px;
-            flex: 1;
-        }
-
-        .footer {
-            padding: 80px 5%;
-            border-top: 1px solid var(--border);
+        footer {
             text-align: center;
-            color: var(--text-dim);
+            padding: 40px;
+            color: var(--text-muted);
+            border-top: 1px solid var(--glass-border);
+            margin-top: 40px;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @media (max-width: 768px) {
-            header nav {
-                display: none;
-            }
-
-            .hero h1 {
-                font-size: 48px;
-            }
+            .nav-links { display: none; }
+            .hero { padding-top: 60px; }
         }
     </style>
 </head>
 
 <body>
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
+    <!-- Background -->
+    <div class="mesh-bg">
+        <div class="mesh-blob blob-1"></div>
+        <div class="mesh-blob blob-2"></div>
+        <div class="mesh-blob blob-3"></div>
+    </div>
 
-    <header>
-        <div class="logo">MapPe Dev</div>
-        <nav>
-            <a href="#noticias">Noticias</a>
-            <a href="#blog">Blog</a>
-            <a href="/index.html">Privacidad</a>
-        </nav>
-    </header>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">Mappe</div>
+        <div class="nav-links">
+            <a href="https://mappedevteam.github.io/Policy/" target="_blank">Privacidad</a>
+        </div>
+    </nav>
 
-    <main>
-        <section class="hero">
-            <h1>Elevando la movilidad en Tacna.</h1>
-            <p>Somos el equipo detrás de MapPe, transformando la forma en que te mueves por la ciudad con tecnología de
-                punta y datos abiertos.</p>
-            <a href="https://play.google.com/store" class="btn">Descargar MapPe</a>
-        </section>
-
-        <section id="noticias">
-            <h2 class="section-title">Últimas Noticias</h2>
-            <div id="news-grid" class="grid">
-                <p>Cargando noticias...</p>
-            </div>
-        </section>
-
-        <section id="blog">
-            <h2 class="section-title">De nuestro Blog</h2>
-            <div id="blog-grid" class="grid">
-                <p>Cargando blog...</p>
-            </div>
-        </section>
+    <!-- Hero Section -->
+    <main class="hero">
+        <div class="badge">🚀 Versión Beta Disponible</div>
+        <h1>Descubre Tacna como nunca antes.</h1>
+        <p>El directorio turístico definitivo. Explora lugares, lee reseñas de otros usuarios, encuentra la mejor ruta de transporte y califica tu experiencia en un solo lugar.</p>
+        
+        <div class="actions">
+            <a href="./mappe-release.apk" class="btn btn-primary" download>
+                <i class="fa-brands fa-android"></i> Descargar APK
+            </a>
+            <a href="https://mappedevteam.github.io/Policy/" class="btn btn-secondary">
+                <i class="fa-solid fa-shield-halved"></i> Privacidad
+            </a>
+        </div>
     </main>
 
-    <footer class="footer">
-        <p>&copy; 2026 MapPe Dev Team. Desarrollado con ❤️ en Tacna, Perú.</p>
+    <!-- Features -->
+    <section class="features">
+        <div class="feature-card">
+            <i class="fa-solid fa-map-location-dot feature-icon"></i>
+            <h3>Rutas Inteligentes</h3>
+            <p>Encuentra la manera más rápida de llegar a tu destino utilizando nuestro motor de rutas de transporte público actualizado de Tacna.</p>
+        </div>
+        <div class="feature-card">
+            <i class="fa-solid fa-star feature-icon"></i>
+            <h3>Reseñas y Calificaciones</h3>
+            <p>Comparte tus experiencias. Lee lo que otros opinan sobre los lugares y ayuda a la comunidad dejando tu propia calificación.</p>
+        </div>
+        <div class="feature-card">
+            <i class="fa-solid fa-eye feature-icon"></i>
+            <h3>Mapa Dinámico</h3>
+            <p>Una interfaz limpia y moderna que muestra los negocios y lugares de interés automáticamente al hacer zoom en la zona que te importa.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Mappe Dev Team. Desarrollado con ❤️ en Tacna, Perú.</p>
     </footer>
-
-    <script>
-        // Configura aquí la URL de tu PocketBase
-        const PB_URL = 'https://api-mappe-devteam.duckdns.org';
-
-        async function fetchNoticias() {
-            try {
-                const response = await fetch(`${PB_URL}/api/collections/noticias/records?sort=-created&limit=3`);
-                const data = await response.json();
-                const grid = document.getElementById('news-grid');
-                grid.innerHTML = '';
-
-                if (data.items.length === 0) {
-                    grid.innerHTML = '<p>Próximamente nuevas noticias.</p>';
-                    return;
-                }
-
-                data.items.forEach(item => {
-                    grid.innerHTML += `
-                        <article class="card">
-                            <span class="card-tag">Noticia</span>
-                            <h3>${item.titulo}</h3>
-                            <p>${item.contenido.replace(/<[^>]*>?/gm, '').substring(0, 150)}...</p>
-                            <div style="margin-top:20px; font-size:12px; color:var(--accent)">${new Date(item.created).toLocaleDateString()}</div>
-                        </article>
-                    `;
-                });
-            } catch (error) {
-                document.getElementById('news-grid').innerHTML = '<p>Error al cargar noticias.</p>';
-            }
-        }
-
-        async function fetchBlog() {
-            try {
-                const response = await fetch(`${PB_URL}/api/collections/blog/records?sort=-created&limit=3`);
-                const data = await response.json();
-                const grid = document.getElementById('blog-grid');
-                grid.innerHTML = '';
-
-                if (data.items.length === 0) {
-                    grid.innerHTML = '<p>El blog estará disponible muy pronto.</p>';
-                    return;
-                }
-
-                data.items.forEach(item => {
-                    grid.innerHTML += `
-                        <article class="card">
-                            <span class="card-tag">Blog</span>
-                            <h3>${item.titulo}</h3>
-                            <p>${item.extracto || item.contenido.replace(/<[^>]*>?/gm, '').substring(0, 150) + '...'}</p>
-                            <div style="margin-top:20px; font-size:12px; color:var(--accent)">Por ${item.autor || 'Equipo MapPe'}</div>
-                        </article>
-                    `;
-                });
-            } catch (error) {
-                document.getElementById('blog-grid').innerHTML = '<p>Error al cargar el blog.</p>';
-            }
-        }
-
-        fetchNoticias();
-        fetchBlog();
-    </script>
 </body>
 
 </html>
