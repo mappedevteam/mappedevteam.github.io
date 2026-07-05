@@ -81,9 +81,17 @@
         }
 
         @keyframes float {
-            0% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(5%, 10%) scale(1.1); }
-            100% { transform: translate(-5%, -5%) scale(0.9); }
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(5%, 10%) scale(1.1);
+            }
+
+            100% {
+                transform: translate(-5%, -5%) scale(0.9);
+            }
         }
 
         /* Navigation */
@@ -129,7 +137,8 @@
             min-height: calc(100vh - 80px);
             display: flex;
             flex-direction: column;
-            justify-content: center; /* Center on desktop */
+            justify-content: center;
+            /* Center on desktop */
             align-items: center;
             text-align: center;
             padding: 0 5%;
@@ -145,7 +154,7 @@
             color: var(--accent-1);
             margin-bottom: 24px;
             backdrop-filter: blur(10px);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
             animation: slideDown 0.8s ease-out;
         }
 
@@ -239,15 +248,18 @@
         .feature-card::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0; height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
         }
 
         .feature-card:hover {
             transform: translateY(-10px);
             background: rgba(255, 255, 255, 0.05);
             border-color: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
 
         .feature-icon {
@@ -278,39 +290,63 @@
         }
 
         @keyframes slideUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @media (max-width: 768px) {
             nav {
                 padding: 16px 5%;
             }
+
             .nav-links a {
                 margin-left: 16px;
                 font-size: 14px;
             }
-            .hero { 
-                justify-content: flex-start; /* Push content up on mobile */
-                padding-top: 10vh; /* Better spacing from top */
+
+            .hero {
+                justify-content: flex-start;
+                /* Push content up on mobile */
+                padding-top: 10vh;
+                /* Better spacing from top */
                 min-height: auto;
                 padding-bottom: 60px;
             }
+
             .hero h1 {
-                font-size: 42px; /* A bit smaller for mobile screens */
+                font-size: 42px;
+                /* A bit smaller for mobile screens */
                 margin-bottom: 20px;
             }
+
             .badge {
                 margin-bottom: 32px;
             }
+
             .mesh-blob {
-                opacity: 0.8; /* Make blobs more visible on mobile */
+                opacity: 0.8;
+                /* Make blobs more visible on mobile */
             }
+
             .features {
                 padding-top: 40px;
             }
@@ -338,11 +374,12 @@
     <main class="hero">
         <div class="badge">🚀 Versión Beta Disponible</div>
         <h1>Descubre Tacna como nunca antes.</h1>
-        <p>El directorio turístico definitivo. Explora lugares, lee reseñas de otros usuarios, encuentra la mejor ruta de transporte y califica tu experiencia en un solo lugar.</p>
-        
+        <p>El directorio turístico definitivo. Explora lugares, lee reseñas de otros usuarios, encuentra la mejor ruta
+            de transporte y califica tu experiencia en un solo lugar.</p>
+
         <div class="actions">
             <a href="./mappe-release.apk" class="btn btn-primary" download>
-                <i class="fa-brands fa-android"></i> Descargar APK
+                <i class="fa-brands fa-android"></i> Descargar APK 0.1.23
             </a>
             <a href="https://mappedevteam.github.io/Policy/" class="btn btn-secondary">
                 <i class="fa-solid fa-shield-halved"></i> Privacidad
@@ -355,17 +392,20 @@
         <div class="feature-card">
             <i class="fa-solid fa-map-location-dot feature-icon"></i>
             <h3>Rutas Inteligentes</h3>
-            <p>Encuentra la manera más rápida de llegar a tu destino utilizando nuestro motor de rutas de transporte público actualizado de Tacna.</p>
+            <p>Encuentra la manera más rápida de llegar a tu destino utilizando nuestro motor de rutas de transporte
+                público actualizado de Tacna.</p>
         </div>
         <div class="feature-card">
             <i class="fa-solid fa-star feature-icon"></i>
             <h3>Reseñas y Calificaciones</h3>
-            <p>Comparte tus experiencias. Lee lo que otros opinan sobre los lugares y ayuda a la comunidad dejando tu propia calificación.</p>
+            <p>Comparte tus experiencias. Lee lo que otros opinan sobre los lugares y ayuda a la comunidad dejando tu
+                propia calificación.</p>
         </div>
         <div class="feature-card">
             <i class="fa-solid fa-eye feature-icon"></i>
             <h3>Mapa Dinámico</h3>
-            <p>Una interfaz limpia y moderna que muestra los negocios y lugares de interés automáticamente al hacer zoom en la zona que te importa.</p>
+            <p>Una interfaz limpia y moderna que muestra los negocios y lugares de interés automáticamente al hacer zoom
+                en la zona que te importa.</p>
         </div>
     </section>
 
