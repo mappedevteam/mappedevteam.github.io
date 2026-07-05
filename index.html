@@ -126,10 +126,10 @@
 
         /* Hero Section */
         .hero {
-            min-height: calc(100vh - 85px);
+            min-height: calc(100vh - 80px);
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: center; /* Center on desktop */
             align-items: center;
             text-align: center;
             padding: 0 5%;
@@ -288,8 +288,32 @@
         }
 
         @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .hero { padding-top: 60px; }
+            nav {
+                padding: 16px 5%;
+            }
+            .nav-links a {
+                margin-left: 16px;
+                font-size: 14px;
+            }
+            .hero { 
+                justify-content: flex-start; /* Push content up on mobile */
+                padding-top: 10vh; /* Better spacing from top */
+                min-height: auto;
+                padding-bottom: 60px;
+            }
+            .hero h1 {
+                font-size: 42px; /* A bit smaller for mobile screens */
+                margin-bottom: 20px;
+            }
+            .badge {
+                margin-bottom: 32px;
+            }
+            .mesh-blob {
+                opacity: 0.8; /* Make blobs more visible on mobile */
+            }
+            .features {
+                padding-top: 40px;
+            }
         }
     </style>
 </head>
