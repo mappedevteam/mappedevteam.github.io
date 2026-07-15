@@ -392,7 +392,7 @@
             style="display: none; margin-top: 12px; font-size: 14px; color: var(--accent-1); font-weight: 600; animation: slideUp 1s ease-out 0.5s backwards;">
             <i class="fa-solid fa-download"></i> <span id="download-count">0</span> descargas activas
         </div>
-        <p
+        <p id="last-update"
             style="font-size: 14px; margin-top: 16px; color: var(--text-muted); max-width: 100%; animation: slideUp 1s ease-out 0.6s backwards;">
             Última actualización: 15 de Julio, 2026
         </p>
@@ -458,12 +458,35 @@
                         counterContainer.style.display = 'block';
                     }
                 }
+
+                // ─── NUEVO: Actualizar Versión y Fecha del último Release ───
+                if (releases.length > 0) {
+                    const latestRelease = releases[0];
+                    const rawVersion = latestRelease.tag_name;
+                    // Limpiamos la 'v' al inicio si la tiene para mantener consistencia visual
+                    const cleanVersion = rawVersion.replace(/^[vV]/, '');
+
+                    // 1. Actualizar texto del botón de descarga
+                    const btnDownload = document.getElementById('btn-download');
+                    if (btnDownload) {
+                        btnDownload.innerHTML = `<i class="fa-brands fa-android"></i> Descargar APK ${cleanVersion}`;
+                    }
+
+                    // 2. Actualizar fecha de última actualización
+                    const lastUpdate = document.getElementById('last-update');
+                    if (lastUpdate && latestRelease.published_at) {
+                        const publishedDate = new Date(latestRelease.published_at);
+                        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                        const formattedDate = publishedDate.toLocaleDateString('es-ES', options);
+                        lastUpdate.textContent = `Última actualización: ${formattedDate}`;
+                    }
+                }
             } catch (error) {
-                console.error('Error al obtener el contador de descargas de GitHub:', error);
+                console.error('Error al obtener la información de GitHub:', error);
             }
         }
 
-        // Cargar el contador cuando el DOM esté listo
+        // Cargar la información cuando el DOM esté listo
         document.addEventListener('DOMContentLoaded', updateDownloadCounter);
     </script>
 </body>
